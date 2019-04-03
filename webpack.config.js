@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: BUILD_DIR,
     publicPath: '',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -21,8 +21,8 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(scss|sass|css)$/,
@@ -35,40 +35,40 @@ module.exports = {
               modules: true,
               sourceMap: true,
               importLoaders: 1,
-              localIdentName: '[local]___[hash:base64:5]'
-            }
+              localIdentName: '[local]___[hash:base64:5]',
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.(html)$/,
         exclude: /node_modules/,
         use: {
           loader: 'html-loader',
-          options: { minimize: true }
-        }
-      }
-    ]
+          options: { minimize: true },
+        },
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(PUB_DIR, '/index.html'),
       filename: './index.html',
-      favicon: path.join(PUB_DIR, '/favicon.png')
+      favicon: path.join(PUB_DIR, '/favicon.png'),
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-    })
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    }),
   ],
   devServer: {
     contentBase: BUILD_DIR,
     hot: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 };
